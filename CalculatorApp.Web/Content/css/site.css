@@ -1,0 +1,30 @@
+﻿body {
+    margin: 20px;
+    padding: 0;
+}
+
+select, input {
+    border: 1px solid black;
+}
+
+#calculate {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.section {
+    padding-top: 10px;
+}
+
+#result {
+    border: 1px solid #000000;
+    height: 250px;
+    overflow-y: auto;
+    width: 400px;
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+    #result li {
+        padding-top: 2px;
+    }

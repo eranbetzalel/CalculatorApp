@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Calculator Tester";
+    Layout = "..\\_Layout.cshtml";
+}
+
+@section Scripts
+{
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.getJSON('/api/operators', function (res) {
+                var operators = $('#operators');
+
+                $.each(res, function (i, obj) {
+                    operators.append('<option value="' + obj + '">' + obj + '</option>');
+                });
+            })
+                .fail(function () {
+                    alert('Failed to get operators.');
+                });
+
+            $('#calculate').click(function (ev) {
+                ev.preventDefault();
+
+                var xOperand = $('#xOperand').val();
+                var yOperand = $('#yOperand').val();
+                var selectedOperator = $('#operators option:selected').val();
+
+                if (xOperand == '') {
+                    alert('Missing operand X.');
+
+                    return;
+                }
+
+                if (yOperand == '') {
+                    alert('Missing operand Y.');
+
+                    return;
+                }
+
+                if (selectedOperator == null) {
+                    alert('Missing operator.');
+
+                    return;
+                }
+
+                $.getJSON('/api/calculator/getResult?x=' + xOperand + '&y=' + yOperand + '&op=' + selectedOperator, function (res) {
+                    if (res.Error) {
+                        alert(res.Error);
+
+                        return;
+                    }
+
+                    $('#result').prepend(
+                        '<li>' + new Date().toLocaleTimeString() + ': <b>' +
+                            xOperand + ' ' + selectedOperator + ' ' + yOperand + ' = ' +
+                            res.Result + '</b></li>');
+                });
+            });
+        });
+    </script>
+}
+
+<h2>@ViewBag.Title</h2>
+<p>
+    This screen allows you to test the Calculator API.
+</p>
+<div>
+    <div class="section">
+        <label for="xOperand">X:</label>
+        <input id="xOperand" />
+    </div>
+    <div class="section">
+        <label for="operators">Operator:</label>
+        <select id="operators">
+        </select>
+    </div>
+    <div class="section">
+        <label for="yOperand">Y:</label>
+        <input id="yOperand" />
+    </div>
+    <button id="calculate">Calculate</button>
+    <h4>Result:</h4>
+    <ul id="result"></ul>
+</div>
