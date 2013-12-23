@@ -31,6 +31,7 @@ namespace CalculatorApp.Web.Controllers.Api
     }
 
     //  Note: consider validation using Model Binding for request
+    //  TODO: add caching mechanism for server (last X calculations) and client (?)
     public CalculateReponse GetResult(decimal? x, decimal? y, string op)
     {
       try
