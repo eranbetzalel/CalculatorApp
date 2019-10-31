@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.WebApi;
-using CalculatorApp.Web.App_Start;
 using CalculatorApp.Web.MathOperator;
 using CalculatorApp.Web.MathOperator.Default;
 using log4net;

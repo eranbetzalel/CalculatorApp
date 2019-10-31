@@ -24,9 +24,7 @@ namespace CalculatorApp.Web.Controllers.Api
       //  TODO: use ISettingProvider /w AutoFac instead of directly calling ConfigurationManager
       var calculationAddedDelay = ConfigurationManager.AppSettings["CalculationAddedDelay"];
 
-      int calculationAddedDelayInt;
-
-      if (int.TryParse(calculationAddedDelay, out calculationAddedDelayInt))
+      if (int.TryParse(calculationAddedDelay, out var calculationAddedDelayInt))
         _calculationAddedDelay = calculationAddedDelayInt;
     }
 
@@ -37,10 +35,10 @@ namespace CalculatorApp.Web.Controllers.Api
       try
       {
         if (!x.HasValue)
-          return new CalculateReponse { Error = string.Format("Missing X operand.") };
+          return new CalculateReponse { Error = "Missing X operand." };
 
         if (!y.HasValue)
-          return new CalculateReponse { Error = string.Format("Missing Y operand.") };
+          return new CalculateReponse { Error = "Missing Y operand." };
 
         var mathOperator = _mathOperatorFactory.GetMathOperatorBySign(op);
 
@@ -56,7 +54,7 @@ namespace CalculatorApp.Web.Controllers.Api
       {
         _log.Error("Calculation failed.", e);
 
-        return new CalculateReponse { Error = string.Format("Calculation failed. {0}.", e.Message) };
+        return new CalculateReponse { Error = $"Calculation failed. {e.Message}."};
       }
     }
   }

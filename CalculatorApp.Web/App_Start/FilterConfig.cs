@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace CalculatorApp.Web.App_Start
+namespace CalculatorApp.Web
 {
   public class FilterConfig
   {

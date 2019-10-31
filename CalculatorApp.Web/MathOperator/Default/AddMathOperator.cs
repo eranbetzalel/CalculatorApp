@@ -2,7 +2,7 @@
 {
   public class AddMathOperator : IMathOperator
   {
-    public string Sign { get { return "+"; } }
+    public string Sign => "+";
 
     public decimal Calculate(decimal x, decimal y)
     {

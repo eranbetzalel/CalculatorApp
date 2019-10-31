@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace CalculatorApp.Web.App_Start
+namespace CalculatorApp.Web
 {
   public static class WebApiConfig
   {
