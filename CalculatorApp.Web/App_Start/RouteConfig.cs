@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace CalculatorApp.Web.App_Start
+namespace CalculatorApp.Web
 {
   public class RouteConfig
   {

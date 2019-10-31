@@ -16,15 +16,10 @@ namespace CalculatorApp.Web.MathOperator
 
     public IMathOperator GetMathOperatorBySign(string sign)
     {
-      IMathOperator mathOperator;
-
-      if (!_mathOperators.TryGetValue(sign, out mathOperator))
-        return null;
-
-      return mathOperator;
+        return !_mathOperators.TryGetValue(sign, out var mathOperator) ? null : mathOperator;
     }
 
-    public string[] GetOperatorSigns()
+    public IEnumerable<string> GetOperatorSigns()
     {
       return _mathOperatorSigns;
     }
